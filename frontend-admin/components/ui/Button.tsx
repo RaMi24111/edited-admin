@@ -29,6 +29,9 @@ export function Button({ children, className, variant = 'primary', size = 'md', 
 
     return (
         <button
+            type={type}
+            onClick={onClick}
+            disabled={disabled}
             className={twMerge(baseStyles, variants[variant], sizes[size], className)}
             {...props}
         >

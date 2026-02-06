@@ -52,13 +52,20 @@ export default function MenuPage() {
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        console.log('=== ADD ITEM DEBUG ===');
+        console.log('Form Data:', formData);
+        console.log('Current Items:', items);
+        console.log('Edit ID:', editId);
+
         if (editId) {
             // Update existing item
-            setItems(items.map(item =>
+            const updatedItems = items.map(item =>
                 item.id === editId
                     ? { ...item, ...formData, price: parseFloat(formData.price) }
                     : item
-            ));
+            );
+            console.log('Updated Items:', updatedItems);
+            setItems(updatedItems);
         } else {
             // Add new item
             const newItem: MenuItem = {
@@ -67,7 +74,10 @@ export default function MenuPage() {
                 price: parseFloat(formData.price),
                 available: true
             };
-            setItems([...items, newItem]);
+            console.log('New Item:', newItem);
+            const updatedItems = [...items, newItem];
+            console.log('Items after add:', updatedItems);
+            setItems(updatedItems);
         }
 
         setShowModal(false);
